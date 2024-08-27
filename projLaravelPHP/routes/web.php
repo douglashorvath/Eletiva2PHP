@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\FormController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [function () {
+    return "Olá Mundo!";
+}]);
+
+Route::get('/form', [FormController::class, 'mostrarForm']);
+
+Route::post('/processarForm', [FormController::class, 'receberValor']);
