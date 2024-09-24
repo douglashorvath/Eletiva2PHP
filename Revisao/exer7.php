@@ -41,23 +41,18 @@
 
 <?php
 if ($_POST) {
-    // Captura os dados do formulário
     $nome_projeto = $_POST['nome_projeto'];
     $prazo_dias = $_POST['prazo_dias'];
     $atividades_total = $_POST['atividades_total'];
     $atividades_realizadas = $_POST['atividades_realizadas'];
     $produtividade_diaria = $_POST['produtividade_diaria'];
 
-    // Calcula o progresso atual do projeto
     $progresso_atual = ($atividades_realizadas / $atividades_total) * 100;
 
-    // Calcula quantas atividades ainda faltam
     $atividades_restantes = $atividades_total - $atividades_realizadas;
 
-    // Calcula quantos dias serão necessários para concluir o projeto com a produtividade atual
     $dias_para_conclusao = ceil($atividades_restantes / $produtividade_diaria);
 
-    // Verifica se o projeto está no prazo
     if ($dias_para_conclusao <= $prazo_dias) {
         $status_projeto = "No prazo";
         $mensagem_prazo = "Você conseguirá terminar o projeto dentro do prazo!";
@@ -67,7 +62,6 @@ if ($_POST) {
         $mensagem_prazo = "O projeto excederá o prazo por " . $dias_excedidos . " dias.";
     }
 
-    // Exibe o relatório de desempenho do projeto
     echo "<br/><b>Avaliação do Projeto: $nome_projeto</b>";
     echo "<br/>Progresso Atual: " . number_format($progresso_atual, 2) . "%";
     echo "<br/>Atividades Restantes: $atividades_restantes";
