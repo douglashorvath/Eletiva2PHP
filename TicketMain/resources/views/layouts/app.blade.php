@@ -43,8 +43,8 @@
         }
 
         .navbar-brand img {
-            height: 40px;
-            /* Ajuste a altura da logo para 40px */
+            height: 80px;
+            /* Aumente a altura do logo */
             margin-right: 10px;
             /* Espaço à direita da logo */
             width: auto;

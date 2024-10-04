@@ -24,7 +24,7 @@
 
             <div class="mb-3">
                 <label for="time" class="form-label">Hora do Evento</label>
-                <input type="time" class="form-control" id="time" name="time" value="{{ $event->time }}" required>
+                <input type="time" class="form-control" id="time" name="time" value="{{ date('H:i', strtotime($event->time)) }}" required>
             </div>
 
             <div class="mb-3">
@@ -36,4 +36,13 @@
             <a href="{{ route('events.index') }}" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
+    @if ($errors->any())
+    <div class="alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
 </x-app-layout>

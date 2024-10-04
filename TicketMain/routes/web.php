@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
     // Rotas personalizadas para eventos
     Route::get('events/upcoming', [EventController::class, 'upcoming'])->name('events.upcoming');
     Route::get('events/completed', [EventController::class, 'completed'])->name('events.completed');
-    Route::put('/events/{id}', [EventController::class, 'update'])->name('events.update');
+    Route::put('/events/{id}', [EventController::class, 'update']);
 
     // Rota resource (exceto 'show' se não for necessária)
     Route::resource('events', EventController::class)->except(['show']);

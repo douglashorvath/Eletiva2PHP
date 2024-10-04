@@ -40,32 +40,32 @@ class EventController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Validação dos dados
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
             'date' => 'required|date',
             'time' => 'required|date_format:H:i',
             'capacity' => 'required|integer|min:1',
         ]);
 
-        // Localiza o evento pelo ID
+        // Obter o evento
         $event = Event::findOrFail($id);
 
-        // Converte a data e hora para um objeto Carbon
-        $event->date = \Carbon\Carbon::createFromFormat('Y-m-d H:i', $request->date . ' ' . $request->time);
+        // Atualizar campos do evento
+        $event->name = $request->input('name');
+        $event->description = $request->input('description');
+        $event->date = $request->input('date');
 
-        // Atualiza os atributos do evento
-        $event->name = $request->name;
-        $event->description = $request->description;
-        $event->capacity = $request->capacity;
+        // Formatar a hora corretamente
+        $event->time = date('H:i', strtotime($request->input('time')));
 
-        // Salva o evento
-        dd($event);
+        $event->capacity = $request->input('capacity');
         $event->save();
 
         return redirect()->route('events.index')->with('success', 'Evento atualizado com sucesso!');
     }
+
+
 
 
     public function destroy(Event $event)
