@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ParticipantController;
+use App\Http\Controllers\LectureController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,9 +25,16 @@ Route::middleware('auth')->group(function () {
     Route::get('events/upcoming', [EventController::class, 'upcoming'])->name('events.upcoming');
     Route::get('events/completed', [EventController::class, 'completed'])->name('events.completed');
     Route::put('/events/{id}', [EventController::class, 'update']);
-
-    // Rota resource (exceto 'show' se não for necessária)
     Route::resource('events', EventController::class)->except(['show']);
+
+    // Rotas para participantes
+    Route::resource('participants', ParticipantController::class);
+
+    // Rotas para palestras
+    Route::resource('lectures', LectureController::class); // CRUD de palestras
+
+    // Gerenciamento de inscrições
+    Route::post('lectures/{lecture}/register', [LectureController::class, 'registerParticipant'])->name('lectures.register');
 });
 
 require __DIR__ . '/auth.php';
