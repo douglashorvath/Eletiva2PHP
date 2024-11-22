@@ -14,11 +14,14 @@ class LectureController extends Controller
         return view('lectures.index', compact('lectures'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        $events = Event::all(); // Obtém todos os eventos para associar à palestra
-        return view('lectures.create', compact('events'));
+        $events = Event::all(); // Obter todos os eventos
+        $selectedEventId = $request->get('event_id'); // Capturar o ID do evento da URL
+        return view('lectures.create', compact('events', 'selectedEventId'));
     }
+
+
 
     public function store(Request $request)
     {
@@ -60,5 +63,11 @@ class LectureController extends Controller
         $lecture->delete();
 
         return redirect()->route('lectures.index')->with('success', 'Palestra excluída com sucesso!');
+    }
+
+    public function show($id)
+    {
+        $lecture = Lecture::with('participants')->findOrFail($id);
+        return view('lectures.show', compact('lecture'));
     }
 }

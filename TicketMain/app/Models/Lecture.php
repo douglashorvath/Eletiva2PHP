@@ -20,4 +20,6 @@ class Lecture extends Model
     {
         return $this->belongsToMany(Participant::class, 'lecture_participant');
     }
+
+    
 }

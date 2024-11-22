@@ -15,5 +15,7 @@ class Participant extends Model
     {
         return $this->belongsToMany(Lecture::class, 'lecture_participant');
     }
+
+    
 }
 

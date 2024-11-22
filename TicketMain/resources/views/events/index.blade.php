@@ -3,13 +3,19 @@
         <h2 class="text-center mb-4">Eventos</h2>
 
         @if(session('success'))
-        <div class="alert-info text-center" role="alert">
-            {{ session('success') }}
-        </div>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Sucesso!',
+                text: "{{ session('success') }}",
+                timer: 3000,
+                showConfirmButton: false
+            });
+        </script>
         @endif
 
         @if ($events->isEmpty())
-        <div class="alert-info text-center">
+        <div class="alert alert-info text-center">
             Não há eventos cadastrados.
         </div>
         @else
@@ -30,11 +36,12 @@
                     <tr>
                         <td class="fw-bold">{{ $event->name }}</td>
                         <td>{{ $event->description }}</td>
-                        <td>{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</td> <!-- Formatar data -->
-                        <td>{{ \Carbon\Carbon::parse($event->time)->format('H:i') }}</td> <!-- Formatar hora -->
+                        <td>{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($event->time)->format('H:i') }}</td>
                         <td>{{ $event->capacity }}</td>
                         <td>
-                            <a href="{{ route('events.edit', $event->id) }}" class="btn btn-warning">Editar</a>
+                            <a href="{{ route('events.edit', $event->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="{{ route('events.lectures', $event->id) }}" class="btn btn-info btn-sm">Ver Palestras</a>
                             <button class="btn btn-danger btn-sm" onclick="confirmDelete('{{ $event->id }}')">Excluir</button>
                         </td>
                     </tr>

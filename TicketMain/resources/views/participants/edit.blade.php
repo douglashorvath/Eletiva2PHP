@@ -2,14 +2,28 @@
     <div class="container mt-5">
         <h2 class="text-center mb-4">Editar Participante</h2>
 
+        {{-- Mensagem de Sucesso --}}
+        @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Sucesso!',
+                text: "{{ session('success') }}",
+                timer: 3000,
+                showConfirmButton: false
+            });
+        </script>
+        @endif
+
+        {{-- Validação de Erros --}}
         @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro!',
+                text: 'Por favor, corrija os erros no formulário.',
+            });
+        </script>
         @endif
 
         <form action="{{ route('participants.update', $participant->id) }}" method="POST">

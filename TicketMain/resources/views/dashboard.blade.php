@@ -85,7 +85,7 @@
             <i class="fas fa-user-plus fa-2x text-warning"></i>
             <h5 class="card-title mt-3">Gerenciar Inscrições</h5>
             <p class="card-text">Registre participantes nas palestras disponíveis.</p>
-            <a href="{{ route('lectures.index') }}" class="btn btn-warning">Registrar Inscrições</a>
+            <a href="{{ route('lectures.index') }}" class="btn btn-warning">Ver Palestras para Inscrição</a>
           </div>
         </div>
       </div>
@@ -97,7 +97,7 @@
             <i class="fas fa-chart-bar fa-2x text-danger"></i>
             <h5 class="card-title mt-3">Estatísticas</h5>
             <p class="card-text">Veja relatórios e métricas sobre eventos e participantes.</p>
-            <a href="#" class="btn btn-danger">Ver Estatísticas</a>
+            <a href="{{ route('stats.index') }}" class="btn btn-danger">Ver Estatísticas</a>
           </div>
         </div>
       </div>

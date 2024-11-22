@@ -97,4 +97,12 @@ class EventController extends Controller
         $event = Event::findOrFail($id); // Encontra o evento ou lança uma exceção se não for encontrado
         return view('events.show', compact('event')); // Retorna a view 'show' com os dados do evento
     }
+
+    public function lectures($id)
+    {
+        $event = Event::findOrFail($id);
+        $lectures = $event->lectures; // Relacionamento entre evento e palestras
+        return view('events.lectures', compact('event', 'lectures'));
+    }
+
 }

@@ -36,9 +36,10 @@
                     <td>{{ $lecture->title }}</td>
                     <td>{{ $lecture->event->name }}</td>
                     <td>
+                        <a href="{{ route('lectures.show', $lecture->id) }}" class="btn btn-info btn-sm">Ver Participantes</a>
+                        <a href="{{ route('registrations.create', $lecture->id) }}" class="btn btn-success btn-sm">Registrar Inscrições</a>
                         <a href="{{ route('lectures.edit', $lecture->id) }}" class="btn btn-warning btn-sm">Editar</a>
-                        <button class="btn btn-danger btn-sm"
-                            onclick="confirmDelete({{ $lecture->id }})">Excluir</button>
+                        <button class="btn btn-danger btn-sm" onclick="confirmDelete({{ $lecture->id }})">Excluir</button>
                     </td>
                 </tr>
                 @endforeach
